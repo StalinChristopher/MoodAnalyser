@@ -2,6 +2,9 @@ package com.yml.moodanalyser;
 
 public class MoodAnalyser {
 	String message;
+	public static enum Errors {
+		NULL_MOOD, EMPTY_MOOD
+	}
 	
 	public MoodAnalyser(){
 		this.message = null;
@@ -32,15 +35,18 @@ public class MoodAnalyser {
 	 * Method to analyse given message and return happy or sad depending on the message and if null then return Happy
 	 * after catching NullPointer exception
 	 */
-	public String analyseMood() {
+	public String analyseMood() throws MoodAnalyserException{
 		try {
+			if(message.length() == 0) {
+				throw new MoodAnalyserException(Errors.EMPTY_MOOD.toString());
+			}
 			if(message.toLowerCase().contains("sad")) {
 				return "SAD";
 			}else {
 				return "HAPPY";
 			}
 		} catch(NullPointerException e) {
-			return "HAPPY";
+			throw new MoodAnalyserException(Errors.NULL_MOOD.toString());
 			
 		}
 		
