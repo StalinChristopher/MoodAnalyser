@@ -4,7 +4,7 @@ public class MoodAnalyser {
 	String message;
 	
 	public MoodAnalyser(){
-		
+		this.message = null;
 	}
 	
 	public MoodAnalyser(String message){
@@ -29,14 +29,21 @@ public class MoodAnalyser {
 
 	/**
 	 * @return
-	 * Method to analyse given message and return happy or sad depending on the message
+	 * Method to analyse given message and return happy or sad depending on the message and if null then return Happy
+	 * after catching NullPointer exception
 	 */
 	public String analyseMood() {
-		if(message.toLowerCase().contains("sad")) {
-			return "SAD";
-		}else {
+		try {
+			if(message.toLowerCase().contains("sad")) {
+				return "SAD";
+			}else {
+				return "HAPPY";
+			}
+		} catch(NullPointerException e) {
 			return "HAPPY";
+			
 		}
+		
 	}
 
 }

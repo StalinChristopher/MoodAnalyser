@@ -31,4 +31,15 @@ public class MoodAnalyserTest {
 		Assert.assertEquals(expected, result);
 	}
 	
+	/**
+	 * Test case to validate invalid mood
+	 */
+	@Test
+	public void nullCheckTestCase() {
+		MoodAnalyser moodAnalyser = new MoodAnalyser();
+		String result = moodAnalyser.analyseMood();
+		String expected = "HAPPY";
+		Assert.assertEquals(expected, result);
+	}
+	
 }
